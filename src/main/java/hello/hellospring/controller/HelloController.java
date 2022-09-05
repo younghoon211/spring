@@ -14,6 +14,7 @@ public class HelloController {
         model.addAttribute("data", "Hello!!!");
         return "hello";
     }
+
     @GetMapping("hello-mvc")
     public String helloMvc(@RequestParam("param") String name, Model model) {
         model.addAttribute("nana", name);
