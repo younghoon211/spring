@@ -2,17 +2,18 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
-import hello.hellospring.repository.MemoryMemberRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+// 1. 스프링 컨테이너에 등록하면
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
+    // 2. 생성자 호출  3.@Autowired가 있으면 스프링 컨테이너에 있는 MemberService에 memberRepository를 넣어줌
     public MemberService(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
+        this.memberRepository = memberRepository; // DI(의존성 주입)
     }
 
     //회원 가입

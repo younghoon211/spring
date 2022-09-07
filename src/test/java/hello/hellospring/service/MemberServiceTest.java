@@ -38,7 +38,6 @@ class MemberServiceTest {
         //then 결과
         Member findMember = memberService.findOne(saveId).get();
         assertThat(member.getName()).isEqualTo(findMember.getName());
-
     }
 
     @Test
