@@ -39,8 +39,10 @@ class ApplicationContextBasicFindTest {
     @Test
     @DisplayName("빈 이름으로 조회X")
     void findBeanByNameX() {
+        // assertThrows(a,
+        //    () -> b);         => a가 반드시 터져야 함. b를 실행하면.
         assertThrows(NoSuchBeanDefinitionException.class,
-                () -> ac.getBean("xxxx", MemberService.class) );
+                () -> ac.getBean("xxxx", MemberService.class));
     }
 
 }
