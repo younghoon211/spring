@@ -73,5 +73,4 @@ public class ApplicationContextExtendsFindTest {
             return new FixDiscountPolicy();
         }
     }
-
 }
