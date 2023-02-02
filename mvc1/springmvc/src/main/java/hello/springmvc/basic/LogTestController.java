@@ -1,7 +1,7 @@
 package hello.springmvc.basic;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
@@ -11,7 +11,7 @@ public class LogTestController {
     // 여기에서 getClass() == LogTestController.class
     // private final Logger log = LoggerFactory.getLogger(getClass());
 
-    @GetMapping
+    @RequestMapping("/log-test")
     public String logTest() {
         String name = "spring";
 
@@ -26,5 +26,4 @@ public class LogTestController {
         // RestController에서 문자 리턴하면 문자 그대로 리턴
         return "ok";
     }
-
 }
