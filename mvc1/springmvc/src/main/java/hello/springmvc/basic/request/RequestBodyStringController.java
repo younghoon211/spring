@@ -3,6 +3,8 @@ package hello.springmvc.basic.request;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Writer;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 
 @Slf4j
@@ -50,11 +53,19 @@ public class RequestBodyStringController {
      * - HttpMessageConverter 사용 -> StringHttpMessageConverter 적용
      */
     @PostMapping("/request-body-string-v3")
-    public HttpEntity<String> requestBodyStringV3(HttpEntity<String> httpEntity) {
+    public HttpEntity<String> requestBodyStringV3(HttpEntity<String> httpEntity, RequestEntity<String> requestEntity) {
         HttpHeaders messageHeader = httpEntity.getHeaders();
         String messageBody = httpEntity.getBody();
+
         log.info("messageHeader={}", messageHeader);
         log.info("messageBody={}", messageBody);
+
+        HttpMethod httpMethod = requestEntity.getMethod();
+        URI url = requestEntity.getUrl();
+
+        log.info("method={}", httpMethod);
+        log.info("url={}", url);
+
         return new HttpEntity<>("ok");
     }
 
