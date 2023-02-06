@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -49,6 +50,14 @@ public class ResponseBodyController {
         helloData.setUsername("userA");
         helloData.setAge(20);
 
+        return helloData;
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    @GetMapping("/response-body-json-v3")
+    public HelloData responseBodyJsonV3(@RequestBody HelloData helloData) {
+        log.info("helloData={}", helloData);
         return helloData;
     }
 }
