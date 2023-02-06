@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletInputStream;
@@ -71,8 +72,10 @@ public class RequestBodyStringController {
 
     @ResponseBody
     @PostMapping("/request-body-string-v4")
-    public String requestBodyStringV4(@RequestBody String messageBody) {
+    public String requestBodyStringV4(@RequestBody String messageBody, @RequestHeader HttpHeaders messageHeader) {
+        log.info("messageHeader={}", messageHeader);
         log.info("messageBody={}", messageBody);
+
         return "ok";
     }
 }
