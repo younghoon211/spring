@@ -2,17 +2,19 @@ package hello.login.domain.member;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 @Data
 public class Member {
 
     private Long id;
 
-    @NotEmpty
+    @NotBlank
     private String loginId;
-    @NotEmpty
+
+    @NotBlank
     private String name;
-    @NotEmpty
+
+    @NotBlank
     private String password;
 }

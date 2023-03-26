@@ -25,9 +25,9 @@ public class SessionManager {
     public void createSession(Object value, HttpServletResponse response) {
         // 세션 ID 생성, 값 저장
         String sessionId = UUID.randomUUID().toString();
-        sessionStore.put(sessionId, value);
+        sessionStore.put(sessionId, value); // value:회원정보
 
-        // 쿠키 생성
+        // 쿠키 생성 -> 세션을 쿠키로 감싸 전달해야 하므로
         Cookie mySessionCookie = new Cookie(SESSION_COOKIE_NAME, sessionId);
         response.addCookie(mySessionCookie);
     }

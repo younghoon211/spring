@@ -2,14 +2,14 @@ package hello.login.web.login;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 @Data
 public class LoginForm {
 
-    @NotEmpty
+    @NotBlank
     private String loginId;
 
-    @NotEmpty
+    @NotBlank
     private String password;
 }

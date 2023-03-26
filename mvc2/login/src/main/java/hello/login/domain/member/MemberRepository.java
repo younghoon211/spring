@@ -32,9 +32,9 @@ public class MemberRepository {
 //            }
 //        }
 //        return Optional.empty();
-        return findAll().stream()
+        return findAll().stream() // 리스트 findAll()을 스트림으로 바꿈
                 .filter(m -> m.getLoginId().equals(loginId))
-                .findFirst();
+                .findFirst(); // 먼저 나온 값 반환 (findAny()랑 동일)
 
     }
 
