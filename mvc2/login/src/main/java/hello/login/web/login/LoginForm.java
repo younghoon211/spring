@@ -12,4 +12,6 @@ public class LoginForm {
 
     @NotBlank
     private String password;
+
+    private String redirectURL;
 }

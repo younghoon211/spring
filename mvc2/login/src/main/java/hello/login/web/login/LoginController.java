@@ -72,7 +72,7 @@ public class LoginController {
         return "redirect:/";
     }
 
-    @PostMapping("/login")
+//    @PostMapping("/login")
     public String loginV3(@Valid @ModelAttribute LoginForm form, BindingResult bindingResult, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             return "login/loginForm";
@@ -93,6 +93,36 @@ public class LoginController {
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
 
         return "redirect:/";
+    }
+
+    @PostMapping("/login")
+    public String loginV4(@Valid @ModelAttribute LoginForm form, BindingResult bindingResult,
+//                          @RequestParam(defaultValue = "/", required = false) String redirectURL,
+                          HttpServletRequest request) {
+        if (bindingResult.hasErrors()) {
+            return "login/loginForm";
+        }
+
+        Member loginMember = loginService.login(form.getLoginId(), form.getPassword());
+
+        if (loginMember == null) {
+            bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
+            return "login/loginForm";
+        }
+
+        // 부가 설명 : V3
+        HttpSession session = request.getSession();
+        session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+
+        // @ModelAttribute 이용
+        String redirectURL = form.getRedirectURL();
+
+        // URL에 'redirectURL' 존재x ('redirectURL' 이라는 문구가 있거나, 빈문자 들어갔을 경우는 스프링이 알아서 처리해줌)
+        if (redirectURL == null) {
+            redirectURL = "/";
+        }
+
+        return "redirect:" + redirectURL;
     }
 
     //    @PostMapping("/logout")
