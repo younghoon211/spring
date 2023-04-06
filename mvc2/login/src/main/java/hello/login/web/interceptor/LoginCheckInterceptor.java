@@ -19,10 +19,13 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 
         HttpSession session = request.getSession();
 
+        // 세션 자체가 없거나 && 세션에 회원 정보가 없으면
         if (session == null && session.getAttribute(SessionConst.LOGIN_MEMBER) == null) {
             log.info("미인증 사용자 요청");
+
             // 로그인으로 redirect
             response.sendRedirect("/login?redirectURL=" + requestURI);
+
             return false;
         }
 

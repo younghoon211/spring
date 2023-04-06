@@ -24,6 +24,7 @@ public class LogInterceptor implements HandlerInterceptor {
 
         // @RequestMapping: HandlerMehod
         // 정적 리소스: ResourceHttpRequestHandler
+        // 어려우면 그냥 우리가 일반적으로 사용하는 @RequestMapping 방식의 핸들러를 사용하기 위해서는 instanceof HandlerMethod인걸 확인 후 사용한다 생각
         if (handler instanceof HandlerMethod) {
             HandlerMethod hm = (HandlerMethod) handler; // 호출할 컨트롤러 메소드의 모든 정보 포함
         }
@@ -45,7 +46,7 @@ public class LogInterceptor implements HandlerInterceptor {
 
         log.info("RESPONSE [{}][{}][{}]", uuid, requestURI, handler);
         if (ex != null) {
-            log.error("afterCompletion error!!", ex); // 오류는 {} 없어도 됨
+            log.error("afterCompletion error!!", ex); // log.error에서는 {} 없어도 됨
         }
     }
 }
